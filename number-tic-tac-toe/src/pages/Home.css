@@ -1,0 +1,51 @@
+/* Adding Custom Font */
+@font-face {
+  font-family: myFirstFont;
+  src: url("../assets/fonts/porkys.regular.ttf");
+}
+
+body {
+  /* background-image: url("../assets/background/background.jpg"); */
+  background-color: lightskyblue;
+  color: white;
+  font-family: myFirstFont;
+}
+
+/* This below is for Title  */
+.title {
+  margin: auto;
+  text-align: center;
+}
+
+.title h1 {
+  font-size: 4rem;
+}
+
+span.jumpshake {
+  animation: jump-shaking 0.83s infinite;
+  text-shadow: 2px 2px 5px black;
+}
+
+@keyframes jump-shaking {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateY(-9px);
+  }
+  35% {
+    transform: translateY(-9px) rotate(17deg);
+  }
+  55% {
+    transform: translateY(-9px) rotate(-17deg);
+  }
+  65% {
+    transform: translateY(-9px) rotate(17deg);
+  }
+  75% {
+    transform: translateY(-9px) rotate(-17deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+  }
+}
