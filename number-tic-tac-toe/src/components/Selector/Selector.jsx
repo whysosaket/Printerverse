@@ -5,7 +5,7 @@ import GameContext from "../../context/game/gameContext";
 const Selector = () => {
 
   const gameContext = useContext(GameContext);
-  const {game, updateGame, selected, updateSelected, handleCellClick, handleSelectorClick, computerPlay, computerPlayFlag, setComputerPlayFlag} = gameContext;
+  const {game, handleSelectorClick, computerPlay, computerPlayFlag, setComputerPlayFlag} = gameContext;
 
   const click = useRef(false);
 

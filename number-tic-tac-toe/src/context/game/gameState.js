@@ -7,19 +7,7 @@ const GameState = (props) => {
     const [points, updatePoints] = useState([0,0]);
     const [computerPlayFlag, setComputerPlayFlag] = useState(false);
     const [playerTurn , updatePlayerTurn] = useState(true);
-
-    const updateBoard = (newGame) => {
-        updateGame(newGame);
-        updateSelected((prev) => {
-            let emptyCells = [];
-            for (let i = 0; i < 9; i++) {
-                if (newGame[i] === 0) {
-                    emptyCells.push(i);
-                }
-            }
-            return emptyCells[Math.floor(Math.random() * emptyCells.length)];
-        });
-    }
+    const [winner, setWinner] = useState("");
 
 
     const handleCellClick = (e)=>{
@@ -39,7 +27,7 @@ const GameState = (props) => {
             const newGame = [...prev];
             newGame[selected] = Number(selectedNo) + 1;
             return newGame;
-        });
+        }, updateGame(game));
         updateSelected((prev) => {
             let emptyCells = [];
             for (let i = 0; i < 9; i++) {
@@ -56,12 +44,16 @@ const GameState = (props) => {
         updateGame([0, 0, 0, 0, 0, 0, 0, 0, 0]);
         updateSelected(4);
         setComputerPlayFlag(false);
+        updatePlayerTurn(true);
     }
 
     const checkWinner = () => {
+        
         // Check rows
         for (let i = 0; i < 9; i += 3) {
             if (game[i] + game[i + 1] + game[i + 2] === 15) {
+                if(game[i] === 0 || game[i + 1] === 0 || game[i + 2] === 0) continue;
+                setWinner("You ");
                 return true;
             }
         }
@@ -69,12 +61,15 @@ const GameState = (props) => {
         // Check columns
         for (let i = 0; i < 3; i++) {
             if (game[i] + game[i + 3] + game[i + 6] === 15) {
+                if(game[i] === 0 || game[i + 3] === 0 || game[i + 6] === 0) continue;
+                setWinner("You ");
                 return true;
             }
         }
     
         // Check diagonals
-        if (game[0] + game[4] + game[8] === 15 || game[2] + game[4] + game[6] === 15) {
+        if ((game[0] + game[4] + game[8] === 15)&&(game[0] !== 0 || game[4] !== 0 || game[9] !== 0) || (game[2] + game[4] + game[6] === 15)&&(game[2] !== 0 || game[4] !== 0 || game[6] !== 0)) {
+            setWinner("You ");
             return true;
         }
     
@@ -85,6 +80,7 @@ const GameState = (props) => {
         // Check rows
         for (let i = 0; i < 9; i += 3) {
             if (newGame[i] + newGame[i + 1] + newGame[i + 2] === 15) {
+                if(newGame[i] === 0 || newGame[i + 1] === 0 || newGame[i + 2] === 0) continue;
                 return true;
             }
         }
@@ -92,12 +88,15 @@ const GameState = (props) => {
         // Check columns
         for (let i = 0; i < 3; i++) {
             if (newGame[i] + newGame[i + 3] + newGame[i + 6] === 15) {
+                if(newGame[i] === 0 || newGame[i + 3] === 0 || newGame[i + 6] === 0) continue;
                 return true;
             }
         }
 
         // Check diagonals
         if (newGame[0] + newGame[4] + newGame[8] === 15 || newGame[2] + newGame[4] + newGame[6] === 15) {
+            if(newGame[0] === 0 || newGame[4] === 0 || newGame[9] === 0) return false;
+            if(newGame[2] === 0 || newGame[4] === 0 || newGame[6] === 0) return false;
             return true;
         }
 
@@ -116,6 +115,8 @@ const GameState = (props) => {
             return;
         }
 
+        let foundWinningMove = false;
+
         // Check if computer can win in the next move
         
         for (let i = 0; i < 9; i++) {
@@ -126,12 +127,16 @@ const GameState = (props) => {
                     newGame[i] = value;
                     if (checkComputerWinner(newGame)) {
                         if (game[i] === 0) {
-                            updateGame(()=> newGame, updateBoard(newGame));
+                            updateGame(newGame);
                             updateSelected(i);
+                            foundWinningMove = true;
                             return;
                         }
                     }
                 });
+            }
+            if(foundWinningMove){
+                return;
             }
         }
     
@@ -189,7 +194,7 @@ const GameState = (props) => {
     
     
         return (
-            <GameContext.Provider value={{game, updateGame, selected, updateSelected, handleCellClick, handleSelectorClick, handleReset, checkWinner, computerPlay,computerPlayFlag, setComputerPlayFlag, playerTurn}}>
+            <GameContext.Provider value={{game, updateGame, selected, updateSelected, handleCellClick, handleSelectorClick, handleReset, checkWinner, computerPlay,computerPlayFlag, setComputerPlayFlag, playerTurn, winner}}>
             {props.children}
             </GameContext.Provider>
         );

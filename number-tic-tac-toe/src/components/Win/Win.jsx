@@ -11,7 +11,7 @@ const Win = (props) => {
     <div>
         {checkWinner()&&
         <div className="win--container">
-            <div className="win--item">{checkWinner?"You Win!":"You Lose!"}</div>
+            <div className="win--item">{checkWinner?"Game Over":"Lose"}</div>
         </div>
         }
     </div>
