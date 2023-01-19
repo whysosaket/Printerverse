@@ -1,0 +1,30 @@
+.selector{
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+    padding: 20px;
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.selector--item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 50px;
+    background-color: #04c0b2;
+    color: #11213a;
+    font-family: "Permanent Marker", cursive;
+    font-size: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+
+.hide{
+    display: none;
+}

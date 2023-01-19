@@ -1,23 +1,25 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import "./Board.css"
+import GameContext from "../../context/game/gameContext";
 
 const Board = (props) => {
 
-  const [game, updateGame] = useState([1,2,3,4,5,6,7,8,9]);
-
-
+  const gameContext = useContext(GameContext);
+  const {game, updateGame, selected, updateSelected, handleCellClick} = gameContext;
+  console.log(selected);
+  
   return (
     <>
-      <div class="game--container">
-            <div data-cell-index="0" id="1" class="cell">{game[0]}</div>
-            <div data-cell-index="1" id="2" class="cell">{game[1]}</div>
-            <div data-cell-index="2" id="3" class="cell">{game[2]}</div>
-            <div data-cell-index="3" id="4" class="cell">{game[3]}</div>
-            <div data-cell-index="4" id="5" class="cell">{game[4]}</div>
-            <div data-cell-index="5" id="6" class="cell">{game[5]}</div>
-            <div data-cell-index="6" id="7" class="cell">{game[6]}</div>
-            <div data-cell-index="7" id="8" class="cell">{game[7]}</div>
-            <div data-cell-index="8" id="9" class="cell">{game[8]}</div>
+      <div className="game--container">
+            <div data-cell-index="0" onClick={handleCellClick} id="1" className={selected===0?"selected cell":"cell"}>{game[0]!==-1&&game[0]}</div>
+            <div data-cell-index="1" onClick={handleCellClick} id="2" className={selected===1?"selected cell":"cell"}>{game[1]!==-1&&game[1]}</div>
+            <div data-cell-index="2" onClick={handleCellClick} id="3" className={selected===2?"selected cell":"cell"}>{game[2]!==-1&&game[2]}</div>
+            <div data-cell-index="3" onClick={handleCellClick} id="4" className={selected===3?"selected cell":"cell"}>{game[3]!==-1&&game[3]}</div>
+            <div data-cell-index="4" onClick={handleCellClick} id="5" className={selected===4?"selected cell":"cell"}>{game[4]!==-1&&game[4]}</div>
+            <div data-cell-index="5" onClick={handleCellClick} id="6" className={selected===5?"selected cell":"cell"}>{game[5]!==-1&&game[5]}</div>
+            <div data-cell-index="6" onClick={handleCellClick} id="7" className={selected===6?"selected cell":"cell"}>{game[6]!==-1&&game[6]}</div>
+            <div data-cell-index="7" onClick={handleCellClick} id="8" className={selected===7?"selected cell":"cell"}>{game[7]!==-1&&game[7]}</div>
+            <div data-cell-index="8" onClick={handleCellClick} id="9" className={selected===8?"selected cell":"cell"}>{game[8]!==-1&&game[8]}</div>
         </div>
     </>
   );

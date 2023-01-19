@@ -19,6 +19,11 @@
   text-align: center;
 }
 
+.cell.selected{
+    background-color: #04c0b2;
+    color: #11213a;
+}
+
 .dead{
     background-color: rgba(66, 66, 66, 0.8);
 }

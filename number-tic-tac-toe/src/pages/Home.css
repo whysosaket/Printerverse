@@ -29,3 +29,27 @@ span.jumpshake {
 .board-conatiner{
   margin: 1rem 2rem;
 }
+
+/* For Reset Button */
+.reset{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.reset-button {
+  margin: 1rem 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  background-color: orange;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px black;
+}
+
+.footer {
+  margin: 1rem 2rem;
+  text-align: center;
+  color: rgb(132, 30, 240);
+}
