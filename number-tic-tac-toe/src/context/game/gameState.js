@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import GameContext from "./gameContext";
 
 const GameState = (props) => {
-    const [game, updateGame] = useState([-1,-1,-1,-1,-1,-1,-1,-1,-1]);
+    const [game, updateGame] = useState([0, 0, 0, 0, 0, 0, 0, 0, 0]);
     const [selected, updateSelected] = useState(4);
     const [points, updatePoints] = useState([0,0]);
     
@@ -11,20 +11,20 @@ const GameState = (props) => {
         updateSelected(Number(cellNo));
     }
 
-    const handleSelectorClick = (e)=>{
+    const handleSelectorClick = async (e)=>{
         const selectedNo = e.target.dataset.cellIndex;
         updateGame((prev)=>{
         const newGame = [...prev];
         newGame[selected] = Number(selectedNo) + 1;
         return newGame;
-        const winner = checkWinner();
-        if(winner){
-            handleReset();
-        }
-    })}
+        });
+        console.log(game);
+        updateSelected((prev)=>prev+3);
+
+    }
 
     const handleReset = ()=>{
-        updateGame([-1,-1,-1,-1,-1,-1,-1,-1,-1]);
+        updateGame([0, 0, 0, 0, 0, 0, 0, 0, 0]);
         updateSelected(4);
     }
 
@@ -39,7 +39,7 @@ const GameState = (props) => {
 
     
     return (
-        <GameContext.Provider value={{game, updateGame, selected, updateSelected, handleCellClick, handleSelectorClick, handleReset}}>
+        <GameContext.Provider value={{game, updateGame, selected, updateSelected, handleCellClick, handleSelectorClick, handleReset, checkWinner}}>
         {props.children}
         </GameContext.Provider>
     );
