@@ -53,3 +53,10 @@ span.jumpshake {
   text-align: center;
   color: rgb(132, 30, 240);
 }
+
+/* For Player Turn */
+.player-turn {
+  margin: 1rem 2rem;
+  text-align: center;
+  font-family: 'Courier New', Courier, monospace;
+}

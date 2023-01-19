@@ -6,7 +6,6 @@ const Board = (props) => {
 
   const gameContext = useContext(GameContext);
   const {game, updateGame, selected, updateSelected, handleCellClick} = gameContext;
-  console.log(selected);
   
   return (
     <>

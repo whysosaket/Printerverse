@@ -8,7 +8,7 @@ import Win from '../components/Win/Win'
 const Home = () => {
 
   const gameContext = useContext(GameContext);
-  const { handleReset, checkWinner} = gameContext;
+  const { handleReset, checkWinner, playerTurn} = gameContext;
 
   return (
     <>
@@ -17,6 +17,9 @@ const Home = () => {
         <span style={{'color': "orange"}}>Tic</span> Tac
         <span style={{'color': "orange"}}> Toe</span>
         </span></h1>
+    </div>
+    <div className='player-turn'>
+      {playerTurn&&(<h1>Your Turn</h1>)}
     </div>
     <div className='board-conatiner'>
       <Board />
